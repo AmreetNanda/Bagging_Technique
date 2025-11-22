@@ -145,6 +145,11 @@ env.bak/
 venv.bak/
 bag/
 
+# Ignore model and artifacts
+artifacts/
+*.pkl
+
+
 # Spyder project settings
 .spyderproject
 .spyproject

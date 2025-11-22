@@ -36,12 +36,42 @@ class ModelTrainer:
             "Random Forest": RandomForestRegressor(),
             "XGBRegressor": XGBRFRegressor()
             }
-        
+
+            # Hyperparameter Tuning
+            params = {
+                
+                "LinearRegression":{},
+
+                "Lasso":{},
+
+                "Ridge":{},
+
+                "Elasticnet":{},
+
+                "DecisionTree": {
+                    'criterion':['squared_error', 'friedman_mse','absolute_error','poisson'],
+                    'splitter':['best','random'],
+                    'max_features':['sqrt','log2']
+                },
+
+                "Random Forest":{
+                    'criterion':['squared_error', 'friedman_mse','absolute_error','poisson'],
+                    'max_features':['sqrt','log2'],
+                    'n_estimators': [8,16,32,62,128,256]
+                },
+
+                "XGBRegressor":{
+                    'learning_rate':[.1,.01,.05,.001],
+                    'n_estimators':[8,16,32,64,128,256]
+                },
+            }
+
             model_report:dict = evaluate_model(X_train = X_train, 
                                                 y_train = y_train,
                                                 X_test = X_test,
                                                 y_test = y_test,
-                                                models = models) 
+                                                models = models,
+                                                param=params) 
             
             best_model_score = max(sorted(model_report.values())) # To get the best model score from dict
             # To get the best model name from the dictionary
@@ -49,11 +79,6 @@ class ModelTrainer:
                 list(model_report.values()).index(best_model_score) 
             ]
             best_model = models[best_model_name]
-
-            if best_model_score < 0.6:
-                raise CustomException("No best model was present")
-            logging.info(f"Best found model on both training and testing dataset")
-
             save_object(file_path = self.model_trainer_config.trained_model_file_path, obj= best_model)
 
             predicted = best_model.predict(X_test)
