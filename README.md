@@ -108,7 +108,7 @@ Open: 👉 http://localhost:8501
 ![App Screenshot](https://github.com/AmreetNanda/Item_Store_Sales_Prediction/blob/main/Item_Store_Sales_Prediction_2.png)
 
 ## Demo
-https://github.com/AmreetNanda/Item_Store_Sales_Prediction/blob/main/Item_Sales_Prediction_Demo.mp4
+https://github.com/user-attachments/assets/a4b5fcc0-a7e3-463b-8c10-f4975dc2339a
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
